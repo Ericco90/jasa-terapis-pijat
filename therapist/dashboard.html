@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Dashboard - Jasa Massage</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#b8860b">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192/b8860b/ffffff.png?text=M">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .status-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: var(--bg-body);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--text-muted);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--status-success);
+        }
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+        .order-card {
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--status-info);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            margin-bottom: 1rem;
+            background-color: var(--bg-card);
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-spa"></i> RelaxMassage
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-briefcase-medical"></i> Order Masuk</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="user-profile">
+                    <div class="text-right d-none d-md-block">
+                        <div class="font-bold text-sm" id="userName">Loading...</div>
+                        <div class="text-xs text-muted">Terapis <i class="fa-solid fa-star text-accent"></i> <span id="userRating">0.0</span></div>
+                    </div>
+                    <div class="user-avatar" id="userInitial">T</div>
+                </div>
+            </header>
+
+            <div class="dashboard-container fade-in">
+                
+                <div class="status-toggle">
+                    <div>
+                        <h3 class="mb-1">Status Ketersediaan</h3>
+                        <p class="text-sm text-muted">Aktifkan untuk menerima pesanan baru</p>
+                    </div>
+                    <div class="ml-auto flex items-center gap-2">
+                        <span id="statusLabel" class="font-bold text-muted">Offline</span>
+                        <label class="switch">
+                            <input type="checkbox" id="statusSwitch">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                        <div class="stat-info">
+                            <h4>Total Order Selesai</h4>
+                            <div class="stat-value" id="totalOrder">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(16, 185, 129, 0.1); color: var(--status-success);"><i class="fa-solid fa-wallet"></i></div>
+                        <div class="stat-info">
+                            <h4>Saldo Pendapatan</h4>
+                            <div class="stat-value text-success" id="userSaldo">Rp 0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-6">
+                    <h3 class="card-title mb-4">Daftar Order Anda</h3>
+                    <div id="orderList">
+                        <div class="text-center text-muted p-4">Memuat data...</div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/therapist.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi - Jasa Massage</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+        }
+        .auth-logo {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        #errorMsg, #successMsg {
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+            padding: 0.5rem;
+            border-radius: var(--border-radius-sm);
+        }
+        #errorMsg {
+            color: var(--status-danger);
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+        #successMsg {
+            color: var(--status-success);
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="auth-container fade-in">
+        <div class="card auth-card">
+            <div class="auth-logo">
+                <i class="fa-solid fa-spa"></i> Registrasi
+            </div>
+            <p class="text-center text-muted mb-6">Buat akun untuk mulai memesan layanan massage profesional.</p>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" id="reg_nama" class="form-control" placeholder="Nama Anda" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nomor WhatsApp</label>
+                    <input type="text" id="reg_no_wa" class="form-control" placeholder="Contoh: 08123456789" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Alamat Lengkap</label>
+                    <textarea id="reg_alamat" class="form-control" rows="3" placeholder="Alamat untuk layanan home service" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="registerBtn">Daftar Sekarang</button>
+                <div id="errorMsg">Gagal melakukan registrasi.</div>
+                <div id="successMsg">Registrasi berhasil! Mengalihkan ke login...</div>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="text-sm text-muted">Sudah punya akun? <a href="login.html" class="text-accent">Login di sini</a></p>
+                <div class="mt-4"><a href="index.html" class="text-sm text-muted"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js?v=2"></script>
+    <script src="js/auth.js?v=2"></script>
+</body>
+</html>

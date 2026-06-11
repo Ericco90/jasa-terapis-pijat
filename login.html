@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jasa Massage</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 400px;
+        }
+        .auth-logo {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .role-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .role-btn {
+            flex: 1;
+            padding: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        .role-btn.active {
+            background-color: var(--color-accent-light);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        #errorMsg {
+            color: var(--status-danger);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="auth-container fade-in">
+        <div class="card auth-card">
+            <div class="auth-logo">
+                <i class="fa-solid fa-spa"></i> Login
+            </div>
+            
+            <div class="role-selector">
+                <div class="role-btn active" data-role="customer">Customer</div>
+                <div class="role-btn" data-role="therapist">Terapis</div>
+                <div class="role-btn" data-role="admin">Admin</div>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Nomor WhatsApp</label>
+                    <input type="text" id="no_wa" class="form-control" placeholder="Contoh: 08123456789" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Masuk</button>
+                <div id="errorMsg">Nomor WhatsApp tidak terdaftar.</div>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="text-sm text-muted">Belum punya akun? <a href="register.html" class="text-accent">Daftar di sini</a></p>
+                <div class="mt-4"><a href="index.html" class="text-sm text-muted"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const roleBtns = document.querySelectorAll('.role-btn');
+        let currentRole = 'customer';
+
+        roleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                roleBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentRole = btn.getAttribute('data-role');
+            });
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.dispatchEvent(new Event('submitEvent')); // to let external js hook
+        });
+    </script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

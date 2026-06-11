@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa Massage - Premium Home Service</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#b8860b">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192/b8860b/ffffff.png?text=M">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-title {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: #e2e8f0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .services-section {
+            padding: 5rem 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--color-primary);
+        }
+        [data-theme="dark"] .section-title {
+            color: var(--color-accent);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 1rem 0;
+        }
+        [data-theme="dark"] .service-price {
+            color: var(--color-accent);
+        }
+        
+        footer {
+            background-color: var(--color-primary-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <i class="fa-solid fa-spa"></i> RelaxMassage
+            </a>
+            <div class="navbar-nav">
+                <a href="login.html" class="nav-link">Login</a>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+        <div class="container">
+            <h1 class="hero-title">Pijat Profesional di Rumah Anda</h1>
+            <p class="hero-subtitle">Rasakan relaksasi maksimal dengan layanan massage premium kami. Terapis profesional bersertifikat siap datang ke lokasi Anda kapan saja.</p>
+            <div class="hero-buttons">
+                <a href="register.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check mr-2"></i> Booking Sekarang</a>
+                <a href="#services" class="btn btn-outline"><i class="fa-solid fa-list mr-2"></i> Lihat Layanan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section container">
+        <h2 class="section-title">Layanan Kami</h2>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="card service-card">
+                <i class="fa-solid fa-hands service-icon"></i>
+                <h3 class="card-title">Pijat Tradisional</h3>
+                <p class="text-muted">Teknik pijat urut turun-temurun untuk melancarkan peredaran darah dan meredakan pegal-pegal.</p>
+                <div class="service-price">Rp 100.000</div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="card service-card">
+                <i class="fa-solid fa-shoe-prints service-icon"></i>
+                <h3 class="card-title">Refleksi</h3>
+                <p class="text-muted">Fokus pada titik-titik saraf di telapak kaki untuk menyeimbangkan fungsi organ tubuh.</p>
+                <div class="service-price">Rp 120.000</div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="card service-card">
+                <i class="fa-solid fa-spa service-icon"></i>
+                <h3 class="card-title">Full Body Massage</h3>
+                <p class="text-muted">Pijat seluruh tubuh dari kepala hingga kaki untuk relaksasi total dan menghilangkan stres.</p>
+                <div class="service-price">Rp 150.000</div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="card service-card">
+                <i class="fa-solid fa-leaf service-icon"></i>
+                <h3 class="card-title">Aromatherapy</h3>
+                <p class="text-muted">Pijat lembut menggunakan minyak esensial murni untuk menenangkan pikiran dan jiwa.</p>
+                <div class="service-price">Rp 180.000</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3 class="text-accent mb-4"><i class="fa-solid fa-spa"></i> RelaxMassage</h3>
+            <p class="text-muted mb-4">Layanan Home Service Profesional 24/7</p>
+            <p class="text-sm text-muted">&copy; 2026 Jasa Massage Home Service. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.documentElement;
+        
+        // Cek local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Baru - Jasa Massage</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Flatpickr for elegant calendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+</head>
+<body data-theme="dark">
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-spa"></i> RelaxMassage
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="booking.html" class="sidebar-link active"><i class="fa-solid fa-calendar-plus"></i> Booking Baru</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="user-profile">
+                    <div class="text-right d-none d-md-block">
+                        <div class="font-bold text-sm" id="userName">Loading...</div>
+                        <div class="text-xs text-muted">Customer</div>
+                    </div>
+                    <div class="user-avatar" id="userInitial">C</div>
+                </div>
+            </header>
+
+            <div class="dashboard-container fade-in">
+                <div class="flex items-center gap-4 mb-6">
+                    <a href="dashboard.html" class="text-muted"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h2 class="mb-0">Buat Booking Baru</h2>
+                </div>
+                
+                <div class="card" style="max-width: 600px; margin: 0 auto;">
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label class="form-label">Pilih Layanan</label>
+                            <select id="layanan" class="form-control" required>
+                                <option value="" disabled selected>-- Pilih Layanan --</option>
+                                <option value="Pijat Tradisional" data-harga="100000">Pijat Tradisional - Rp 100.000</option>
+                                <option value="Refleksi" data-harga="120000">Refleksi - Rp 120.000</option>
+                                <option value="Full Body Massage" data-harga="150000">Full Body Massage - Rp 150.000</option>
+                                <option value="Aromatherapy" data-harga="180000">Aromatherapy - Rp 180.000</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Preferensi Terapis</label>
+                            <select id="bookingGender" class="form-control">
+                                <option value="Bebas">Bebas (Pria / Wanita)</option>
+                                <option value="Pria">Khusus Terapis Pria</option>
+                                <option value="Wanita">Khusus Terapis Wanita</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Jadwal (Tanggal & Waktu)</label>
+                            <input type="datetime-local" id="jadwal" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="form-label mb-0">Alamat Lengkap</label>
+                                <button type="button" id="btnLocation" class="btn btn-sm btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;"><i class="fa-solid fa-location-crosshairs"></i> Deteksi Lokasi Saya</button>
+                            </div>
+                            <textarea id="alamat" class="form-control" rows="3" required></textarea>
+                            <small class="text-muted mt-1 d-block" id="locationStatus">Terapis terdekat akan dicari berdasarkan lokasi ini.</small>
+                            <input type="hidden" id="cust_lat" value="">
+                            <input type="hidden" id="cust_lng" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Catatan Tambahan (Opsional)</label>
+                            <input type="text" id="catatan" class="form-control" placeholder="Contoh: Tolong bawa minyak hangat">
+                        </div>
+                        
+                        <div class="mt-6 mb-4 p-4 rounded" style="background-color: var(--bg-body); border: 1px solid var(--border-color);">
+                            <div class="flex justify-between font-bold text-lg">
+                                <span class="text-white">Total Tagihan:</span>
+                                <span class="text-accent" id="totalHarga">Rp 0</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBookingBtn">Konfirmasi Booking</button>
+                        <div id="bookingMsg" class="mt-4 text-center text-sm" style="display:none; padding: 0.5rem; border-radius: var(--border-radius-sm);"></div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/customer.js"></script>
+</body>
+</html>

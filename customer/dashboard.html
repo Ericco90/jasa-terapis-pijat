@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - Jasa Massage</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#b8860b">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192/b8860b/ffffff.png?text=M">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-spa"></i> RelaxMassage
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="booking.html" class="sidebar-link"><i class="fa-solid fa-calendar-plus"></i> Booking Baru</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="user-profile">
+                    <div class="text-right d-none d-md-block">
+                        <div class="font-bold text-sm" id="userName">Loading...</div>
+                        <div class="text-xs text-muted">Customer</div>
+                    </div>
+                    <div class="user-avatar" id="userInitial">C</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-container fade-in">
+                <h2 class="mb-6">Dashboard Customer</h2>
+                
+                <!-- Stats -->
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+                        <div class="stat-info">
+                            <h4>Saldo Anda</h4>
+                            <div class="stat-value" id="userSaldo">Rp 0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <div class="stat-info">
+                            <h4>Total Order</h4>
+                            <div class="stat-value" id="totalOrder">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History -->
+                <div class="card mt-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="card-title mb-0">Riwayat Booking Terbaru</h3>
+                        <a href="booking.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Booking Baru</a>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table" id="historyTable">
+                            <thead>
+                                <tr>
+                                    <th>ID Order</th>
+                                    <th>Layanan</th>
+                                    <th>Jadwal</th>
+                                    <th>Terapis</th>
+                                    <th>Harga</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center">Memuat data...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/customer.js"></script>
+</body>
+</html>

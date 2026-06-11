@@ -1,0 +1,21 @@
+{
+  "name": "Jasa Massage App",
+  "short_name": "Massage",
+  "description": "Aplikasi Jasa Pijat Panggilan Profesional",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#b8860b",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192/b8860b/ffffff.png?text=M",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512/b8860b/ffffff.png?text=M",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

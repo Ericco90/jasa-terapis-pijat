@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Jasa Massage</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#b8860b">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192/b8860b/ffffff.png?text=M">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield"></i> Admin Panel
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-target="view-dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                <a href="#" class="sidebar-link" data-target="view-customers"><i class="fa-solid fa-users"></i> Customers</a>
+                <a href="#" class="sidebar-link" data-target="view-therapists"><i class="fa-solid fa-user-nurse"></i> Terapis</a>
+                <a href="#" class="sidebar-link" data-target="view-bookings"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="mobile-toggle" id="mobileToggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="user-profile">
+                    <div class="text-right d-none d-md-block">
+                        <div class="font-bold text-sm">Administrator</div>
+                        <div class="text-xs text-muted">Superadmin</div>
+                    </div>
+                    <div class="user-avatar">A</div>
+                </div>
+            </header>
+
+            <div class="dashboard-container fade-in">
+                
+                <!-- View: Dashboard Stats -->
+                <div id="view-dashboard" class="view-section active">
+                    <h2 class="mb-6">Statistik Utama</h2>
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                            <div class="stat-info">
+                                <h4>Total Customer</h4>
+                                <div class="stat-value" id="stat-customers">0</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-user-nurse"></i></div>
+                            <div class="stat-info">
+                                <h4>Total Terapis</h4>
+                                <div class="stat-value" id="stat-therapists">0</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                            <div class="stat-info">
+                                <h4>Total Booking</h4>
+                                <div class="stat-value" id="stat-bookings">0</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+                            <div class="stat-info">
+                                <h4>Total Omset Keseluruhan</h4>
+                                <div class="stat-value text-success" id="stat-revenue">Rp 0</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: rgba(16, 185, 129, 0.1); color: var(--status-success);"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                            <div class="stat-info">
+                                <h4>Pendapatan Komisi (20%)</h4>
+                                <div class="stat-value text-accent" id="stat-commission">Rp 0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View: Customers -->
+                <div id="view-customers" class="view-section">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="mb-0">Kelola Customer</h2>
+                        <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Tambah Customer</button>
+                    </div>
+                    <div class="card table-container">
+                        <table class="table" id="table-customers">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama</th>
+                                    <th>No WA</th>
+                                    <th>Saldo</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr><td colspan="5" class="text-center">Memuat...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- View: Therapists -->
+                <div id="view-therapists" class="view-section">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="mb-0">Kelola Terapis</h2>
+                        <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Tambah Terapis</button>
+                    </div>
+                    <div class="card table-container">
+                        <table class="table" id="table-therapists">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama</th>
+                                    <th>No WA</th>
+                                    <th>Status</th>
+                                    <th>Rating</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr><td colspan="6" class="text-center">Memuat...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- View: Bookings -->
+                <div id="view-bookings" class="view-section">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="mb-0">Semua Booking</h2>
+                        <button class="btn btn-outline btn-sm" onclick="exportBookingsPDF()"><i class="fa-solid fa-file-pdf"></i> Export PDF</button>
+                    </div>
+                    <div class="card table-container">
+                        <table class="table" id="table-bookings">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Terapis</th>
+                                    <th>Layanan</th>
+                                    <th>Jadwal</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr><td colspan="7" class="text-center">Memuat...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
