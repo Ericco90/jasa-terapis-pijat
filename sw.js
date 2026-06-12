@@ -1,17 +1,22 @@
-const CACHE_NAME = 'jasa-massage-v1';
+const CACHE_NAME = 'jasa-massage-v2';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/css/styles.css',
-  '/css/dashboard.css',
-  '/js/api.js'
+  './',
+  './index.html',
+  './css/style.css',
+  './css/dashboard.css',
+  './js/api.js'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        return cache.addAll(urlsToCache);
+        // Safe caching so if 1 file fails, it doesn't break PWA installation
+        return Promise.all(
+          urlsToCache.map(url => {
+            return cache.add(url).catch(err => console.log('SW Cache Error on:', url));
+          })
+        );
       })
   );
 });
