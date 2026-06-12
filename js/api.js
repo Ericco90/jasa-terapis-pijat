@@ -168,6 +168,69 @@ const API = {
     }
 };
 
+// ==========================================
+// BRAND SETTINGS SYNC (White-label Engine)
+// ==========================================
+window.applyBrandSettings = function() {
+    const brandName = localStorage.getItem('brand_name') || 'Jasa Massage';
+    const brandLogo = localStorage.getItem('brand_logo') || '';
+    
+    // Update text
+    document.querySelectorAll('.brand-text').forEach(el => {
+        el.textContent = brandName;
+    });
+    
+    // Update Page Title (Replace fallback names with dynamic name)
+    document.title = document.title.replace(/RelaxMassage|Jasa Massage/g, brandName);
+    
+    // Update Icons/Logos
+    document.querySelectorAll('.brand-icon').forEach(el => {
+        if (brandLogo) {
+            if (el.tagName === 'I') {
+                const img = document.createElement('img');
+                img.src = brandLogo;
+                img.className = 'brand-icon brand-logo-img';
+                img.alt = brandName;
+                img.style.maxHeight = '28px';
+                img.style.verticalAlign = 'middle';
+                el.parentNode.replaceChild(img, el);
+            } else if (el.tagName === 'IMG') {
+                el.src = brandLogo;
+            }
+        } else {
+            if (el.tagName === 'IMG') {
+                const i = document.createElement('i');
+                i.className = 'fa-solid fa-spa brand-icon';
+                el.parentNode.replaceChild(i, el);
+            }
+        }
+    });
+};
+
+// 1. Terapkan secara instan (0ms) dari LocalStorage saat file dimuat
+applyBrandSettings();
+
+// 2. Cek database di background untuk pembaharuan
+setTimeout(() => {
+    API.request('getSettings').then(res => {
+        if (res.success && res.data) {
+            let changed = false;
+            const newName = res.data.brand_name || 'Jasa Massage';
+            const newLogo = res.data.brand_logo || '';
+            
+            if (localStorage.getItem('brand_name') !== newName) {
+                localStorage.setItem('brand_name', newName);
+                changed = true;
+            }
+            if (localStorage.getItem('brand_logo') !== newLogo) {
+                localStorage.setItem('brand_logo', newLogo);
+                changed = true;
+            }
+            if (changed) applyBrandSettings();
+        }
+    }).catch(e => console.log('Gagal sync settings'));
+}, 500);
+
 // Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

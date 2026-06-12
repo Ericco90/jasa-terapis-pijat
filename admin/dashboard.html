@@ -28,6 +28,7 @@
                 <a href="#" class="sidebar-link" data-target="view-customers"><i class="fa-solid fa-users"></i> Customers</a>
                 <a href="#" class="sidebar-link" data-target="view-therapists"><i class="fa-solid fa-user-nurse"></i> Terapis</a>
                 <a href="#" class="sidebar-link" data-target="view-bookings"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+                <a href="#" class="sidebar-link" data-target="view-settings"><i class="fa-solid fa-gear"></i> Pengaturan</a>
             </nav>
             <div class="sidebar-footer">
                 <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
@@ -156,6 +157,25 @@
                             </thead>
                             <tbody><tr><td colspan="7" class="text-center">Memuat...</td></tr></tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- View: Settings -->
+                <div id="view-settings" class="view-section">
+                    <h2 class="mb-6">Pengaturan Brand</h2>
+                    <div class="card">
+                        <form id="settingsForm">
+                            <div class="form-group">
+                                <label class="form-label">Nama Brand</label>
+                                <input type="text" id="setting_brand_name" class="form-control" placeholder="Contoh: Jasa Massage">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">URL Gambar Logo (Opsional)</label>
+                                <input type="url" id="setting_brand_logo" class="form-control" placeholder="https://example.com/logo.png">
+                                <small class="text-muted">Kosongkan jika ingin menggunakan ikon default. Pastikan URL langsung menuju ke file gambar (berakhiran .png / .jpg).</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="saveSettingsBtn">Simpan Pengaturan</button>
+                        </form>
                     </div>
                 </div>
 

@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             else if(targetId === 'view-customers') loadCustomers();
             else if(targetId === 'view-therapists') loadTherapists();
             else if(targetId === 'view-bookings') loadBookings();
+            else if(targetId === 'view-settings') loadSettings();
         });
     });
 
@@ -234,6 +235,48 @@ document.addEventListener('DOMContentLoaded', async () => {
         } catch(e) {
             tbody.innerHTML = '<tr><td colspan="6" class="text-center text-danger">Error loading data</td></tr>';
         }
+    }
+
+    async function loadSettings() {
+        try {
+            const res = await API.request('getSettings');
+            if (res.success) {
+                document.getElementById('setting_brand_name').value = res.data.brand_name || '';
+                document.getElementById('setting_brand_logo').value = res.data.brand_logo || '';
+            }
+        } catch(e) {
+            console.error('Gagal memuat pengaturan', e);
+        }
+    }
+
+    const settingsForm = document.getElementById('settingsForm');
+    if (settingsForm) {
+        settingsForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('saveSettingsBtn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Menyimpan...';
+            
+            const payload = {
+                brand_name: document.getElementById('setting_brand_name').value,
+                brand_logo: document.getElementById('setting_brand_logo').value
+            };
+            
+            try {
+                const res = await API.request('saveSettings', payload);
+                if (res.success) {
+                    alert('Pengaturan berhasil disimpan!');
+                    localStorage.setItem('brand_name', payload.brand_name);
+                    localStorage.setItem('brand_logo', payload.brand_logo);
+                    if (window.applyBrandSettings) window.applyBrandSettings();
+                } else {
+                    alert('Gagal menyimpan: ' + res.message);
+                }
+            } catch (err) {
+                alert('Error jaringan saat menyimpan pengaturan.');
+            }
+            btn.textContent = originalText;
+        });
     }
 
     // Load initial data
